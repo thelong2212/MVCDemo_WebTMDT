@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using WebSiteBanHangMVC.Areas.Admin.Models;
 using WebSiteBanHangMVC.Common;
 using WebSiteBanHangMVC.DAO;
-using WebSiteBanHangMVC.Models;
 using WebSiteBanHangMVC.Utils;
 
 namespace WebSiteBanHangMVC.Areas.Admin.Controllers

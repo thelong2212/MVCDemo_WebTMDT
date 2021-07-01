@@ -38,6 +38,21 @@ namespace WebSiteBanHangMVC
                 defaults: new { controller = "ChiTietSanPham", action = "Index" }
              );
             routes.MapRoute(
+                name: "DangKy",
+                url: "dang-ky-thanh-vien",
+                defaults: new { controller = "User", action = "DangKy" }
+             );
+            routes.MapRoute(
+               name: "DangNhap",
+               url: "dang-nhap",
+               defaults: new { controller = "User", action = "DangNhap" }
+            );
+            routes.MapRoute(
+               name: "DangXuat",
+               url: "dang-xuat",
+               defaults: new { controller = "User", action = "DangXuat" }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
