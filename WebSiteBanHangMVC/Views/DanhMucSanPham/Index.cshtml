@@ -27,7 +27,7 @@
                         sanPham.AnhSanPham = "~/Images/productImage/a.jpg";
                     }
                     <div class="col-md-3">
-                        <a href="/danh-muc-san-pham/@sanPham.SanPhamID" class="product-item">
+                        <a href="/chi-tiet-san-pham/@sanPham.SanPhamID" class="product-item">
                             <div class="card" style="width: 100%">
                                 <img src="@Url.Content(sanPham.AnhSanPham)" class="card-img-top" alt="" style=" width: 100%; height: 250px;object-fit: cover;" />
                                 <div class="card-body">
@@ -40,7 +40,7 @@
             }
         </div>
         <div class="col-md-3" style="margin-top: 84px;">
-            @using (Html.BeginForm("Search", "DanhSachSanPham", FormMethod.Post))
+            @using (Html.BeginForm("Search", "DanhMucSanPham", FormMethod.Post))
             {
                 <div class="input-group mb-3">
                     <input type="text" value="@ViewBag.keyword" class="form-control" name="searchString" aria-label="Amount (to the nearest dollar)" />
@@ -103,7 +103,7 @@
             var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
             var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
 
-            var link = "/danh-sach-san-pham/" + @ViewBag.danhMucSanPhamID;
+            var link = "/danh-muc-san-pham/" + @ViewBag.danhMucSanPhamID;
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     @if (currentPage > ViewBag.First)

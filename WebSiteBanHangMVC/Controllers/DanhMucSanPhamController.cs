@@ -11,7 +11,7 @@ namespace WebSiteBanHangMVC.Controllers
     public class DanhMucSanPhamController : Controller
     {
         // GET: DanhMucSanPham
-        public ActionResult Index(int? ID, int pageIndex=1, int pageSize= 4)
+        public ActionResult Index(int? ID, int page = 1, int pageSize= 4)
         {
             using(var db= new ApplicationDbContext())
             {
@@ -19,10 +19,10 @@ namespace WebSiteBanHangMVC.Controllers
                 {
                     var TenLoaiSanPham = db.PhanLoaiSanPhams.Where(x => x.PhanLoaiSanPhamID == ID).Select(x => x.TenPhanLoaiSanPham).FirstOrDefault();
                     int totalRecord = 0;
-                    var dsSanPhamTheoLoai = new SanPhamDAO().DanhMucSanPham(ID, ref totalRecord, pageIndex, pageSize);
+                    var dsSanPhamTheoLoai = new SanPhamDAO().DanhMucSanPham(ID, ref totalRecord, page, pageSize);
 
                     ViewBag.Total = totalRecord;
-                    ViewBag.Page = pageIndex;
+                    ViewBag.Page = page;
                     int maxPage = 5;
                     int totalPage = 0;
 
@@ -31,8 +31,8 @@ namespace WebSiteBanHangMVC.Controllers
                     ViewBag.MaxPage = maxPage;
                     ViewBag.First = 1;
                     ViewBag.Last = totalPage;
-                    ViewBag.Next = pageIndex + 1;
-                    ViewBag.Prev = pageIndex - 1;
+                    ViewBag.Next = page + 1;
+                    ViewBag.Prev = page - 1;
 
                     ViewData["dsSanPhamTheoLoai"] = dsSanPhamTheoLoai;
                     ViewBag.TenLoaiSanPham = TenLoaiSanPham;
@@ -48,7 +48,8 @@ namespace WebSiteBanHangMVC.Controllers
             }
             return View();
         }
-        public ActionResult Search(int pageIndex, int pageSize)
+        [HttpPost]
+        public ActionResult Search(int page, int pageSize)
         {
             using(var db= new ApplicationDbContext())
             {
@@ -56,10 +57,10 @@ namespace WebSiteBanHangMVC.Controllers
                 int id = Convert.ToInt32(Request.Form["id"]);
                 var TenLoaiSanPham = db.PhanLoaiSanPhams.Where(x => x.PhanLoaiSanPhamID == id).Select(x => x.TenPhanLoaiSanPham).FirstOrDefault();
                 int totalRecord = 0;
-                var dsSanPham = new SanPhamDAO().Search(id, keyword, ref totalRecord, pageIndex, pageSize);
+                var dsSanPhamTheoLoai = new SanPhamDAO().Search(id, keyword, ref totalRecord, page, pageSize);
 
                 ViewBag.Total = totalRecord;
-                ViewBag.Page = pageIndex;
+                ViewBag.Page = page;
                 int maxPage = 5;
                 int totalPage = 0;
 
@@ -68,10 +69,10 @@ namespace WebSiteBanHangMVC.Controllers
                 ViewBag.MaxPage = maxPage;
                 ViewBag.First = 1;
                 ViewBag.Last = totalPage;
-                ViewBag.Next = pageIndex + 1;
-                ViewBag.Prev = pageIndex - 1;
+                ViewBag.Next = page + 1;
+                ViewBag.Prev = page - 1;
 
-                ViewData["dsSanPham"] = dsSanPham;
+                ViewData["dsSanPhamTheoLoai"] = dsSanPhamTheoLoai;
                 ViewBag.TenLoaiSanPham = TenLoaiSanPham;
                 ViewBag.danhMucSanPhamID = id;
 

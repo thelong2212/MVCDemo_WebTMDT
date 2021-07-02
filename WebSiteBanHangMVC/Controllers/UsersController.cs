@@ -32,7 +32,7 @@ namespace WebSiteBanHangMVC.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new UserDAO();
-                var result = dao.Login(model.UserName, Encryptor.MD5Hash(model.Password), true);
+                var result = dao.LoginClient(model.UserName, Encryptor.MD5Hash(model.Password), true);
                 if (result == 1)
                 {
                     var user = dao.GetByID(model.UserName);

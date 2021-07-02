@@ -1,4 +1,5 @@
 ﻿@using WebSiteBanHangMVC.Models;
+@using WebSiteBanHangMVC.Utils;
 @{
     var dsPhanLoaiSanPhamNam = ViewData["dsPhanLoaiSanPhamNam"] as List<PhanLoaiSanPham> ?? new List<PhanLoaiSanPham>();
     var dsPhanLoaiSanPhamNu = ViewData["dsPhanLoaiSanPhamNu"] as List<PhanLoaiSanPham> ?? new List<PhanLoaiSanPham>();
@@ -98,25 +99,25 @@
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     @{
                         if (Session[WebSiteBanHangMVC.Common.CommonConstant.USER_SESSION] != null)
-                        {
-                            <li class="dropdown" style="margin-top:7px;">
-                                <a style="color: #f3f90f;" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-user fa-fw"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li>
-                                        <a href="/Admin/Login/Index">Quản lý hệ thống</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="/Users/DangXuat"> Đăng xuất</a>
-                                    </li>
-                                    <li>
-                                        <a href="/Users/DangKy"> Đăng ký</a>
-                                    </li>
-                                </ul>
-                                <!-- /.dropdown-user -->
-                            </li>
+                                {
+                                        <li class="dropdown" style="margin-top:7px;">
+                                            <a style="color: #f3f90f;" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                <i class="fa fa-user fa-fw"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-user">
+                                                <li>
+                                                    <a href="/Admin/Login/Index">Quản lý hệ thống</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a href="/Users/DangXuat"> Đăng xuất</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Users/DangKy"> Đăng ký</a>
+                                                </li>
+                                            </ul>
+                                            <!-- /.dropdown-user -->
+                                        </li>
                         }
                         else
                         {

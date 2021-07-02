@@ -2270,7 +2270,6 @@
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Payment\XacNhanThanhToan.cshtml" />
     <Content Include="Views\DanhMucSanPham\Index.cshtml" />
-    <Content Include="Views\DanhMucSanPham\Search.cshtml" />
     <Content Include="Views\Users\DangKy.cshtml" />
     <Content Include="Views\Users\DangNhap.cshtml" />
   </ItemGroup>

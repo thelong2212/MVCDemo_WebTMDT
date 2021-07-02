@@ -169,6 +169,48 @@ namespace WebSiteBanHangMVC.DAO
                 }
             }
         }
+        public int LoginClient(string userName, string passWordSalt, bool isLoginAdmin = false)
+        {
+            var result = db.Users.SingleOrDefault(x => x.UserName == userName);
+            if (result == null)
+            {
+                return 0;
+            }
+            else
+            {
+                if (isLoginAdmin == true)
+                {
+                    if (result.GroupID == CommonConstants.ADMIN_GROUP || result.GroupID == CommonConstants.MEMBER_GROUP)
+                    {
+                        if (result.Status == false)
+                            return -1;
+                        else
+                        {
+                            if (result.PasswordSalt == passWordSalt)
+                                return 1;
+                            else
+                                return -2;
+                        }
+                    }
+                    else
+                    {
+                        return -3;
+                    }
+                }
+                else
+                {
+                    if (result.Status == true)
+                    {
+                        if (result.PasswordSalt == passWordSalt)
+                            return 1;
+                        else
+                            return -2;
+                    }
+                    else
+                        return -1;
+                }
+            }
+        }
         public bool? ChangeStatus(long id)
         {
             var user = db.Users.Find(id);
