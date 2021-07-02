@@ -10,9 +10,9 @@ using WebSiteBanHangMVC.Utils;
 
 namespace WebSiteBanHangMVC.Controllers
 {
-    public class UserController : Controller
+    public class UsersController : Controller
     {
-        // GET: User
+        // GET: Users
         public ActionResult DangKy()
         {
             return View();
@@ -27,7 +27,7 @@ namespace WebSiteBanHangMVC.Controllers
             return Redirect("/");
         }
         [HttpPost]
-        public ActionResult DangNhap(LoginModel model)
+        public ActionResult DangNhap(LoginModels model)
         {
             if (ModelState.IsValid)
             {
@@ -63,16 +63,16 @@ namespace WebSiteBanHangMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult DangKy(RegisterModel model)
+        public ActionResult DangKy(RegisterModels model)
         {
             if (ModelState.IsValid)
             {
                 var register = new UserDAO();
                 if (register.CheckUserName(model.Name))
                 {
-                    ModelState.AddModelError("","Tên Đăng Ký Đã Tồn Tại");
+                    ModelState.AddModelError("", "Tên Đăng Ký Đã Tồn Tại");
                 }
-                else if(register.CheckEmail(model.Email))
+                else if (register.CheckEmail(model.Email))
                 {
                     ModelState.AddModelError("", "Email Đã Tồn Tại");
                 }
@@ -88,11 +88,11 @@ namespace WebSiteBanHangMVC.Controllers
                     user.Address = model.Address;
                     user.DiaChiChiTiet = model.DiaChiChiTiet;
                     user.Status = true;
-                    var result =register.Insert(user);
-                    if (result>0)
+                    var result = register.Insert(user);
+                    if (result > 0)
                     {
                         ViewBag.Success = "Đăng Ký Thành Công";
-                        model = new RegisterModel();
+                        model = new RegisterModels();
                     }
                     else
                     {

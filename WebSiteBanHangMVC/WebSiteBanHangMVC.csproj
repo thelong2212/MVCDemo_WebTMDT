@@ -200,7 +200,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\ChiTietSanPhamController.cs" />
@@ -209,6 +208,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAO\DonHangDAO.cs" />
     <Compile Include="DAO\KhachHangDAO.cs" />
     <Compile Include="DAO\SanPhamDAO.cs" />
@@ -228,11 +228,13 @@
     <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\LoaiDanhMucSanPham.cs" />
     <Compile Include="Models\LoaiThongSo.cs" />
+    <Compile Include="Models\LoginModels.cs" />
     <Compile Include="Models\LoSanPham.cs" />
     <Compile Include="Models\NhanVien.cs" />
     <Compile Include="Models\NhapKho.cs" />
     <Compile Include="Models\PhanLoaiSanPham.cs" />
     <Compile Include="Models\QuanHuyen.cs" />
+    <Compile Include="Models\RegisterModels.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SanPham.cs" />
     <Compile Include="Models\SanPhamDonHang.cs" />
@@ -2269,6 +2271,8 @@
     <Content Include="Views\Payment\XacNhanThanhToan.cshtml" />
     <Content Include="Views\DanhMucSanPham\Index.cshtml" />
     <Content Include="Views\DanhMucSanPham\Search.cshtml" />
+    <Content Include="Views\Users\DangKy.cshtml" />
+    <Content Include="Views\Users\DangNhap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Home\" />

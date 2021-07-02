@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebSiteBanHangMVC.Models
 {
-    public class LoginModel
+    public class LoginModels
     {
         [Key]
         [Display(Name = "Tên đăng nhập")]

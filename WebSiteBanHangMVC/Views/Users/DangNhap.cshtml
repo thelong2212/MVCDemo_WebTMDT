@@ -1,4 +1,4 @@
-﻿ @model  WebSiteBanHangMVC.Models.LoginModel
+﻿@model  WebSiteBanHangMVC.Models.LoginModels
 
 @{
     ViewBag.Title = "Login";
@@ -6,7 +6,7 @@
 }
 
 <div class="content container col-md-6">
-    @using (Html.BeginForm("DangNhap", "User", FormMethod.Post))
+    @using (Html.BeginForm("DangNhap", "Users", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
