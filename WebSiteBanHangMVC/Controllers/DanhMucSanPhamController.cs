@@ -49,15 +49,15 @@ namespace WebSiteBanHangMVC.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Search(int page, int pageSize)
+        public ActionResult Search(int page = 1, int pageSize = 4)
         {
             using(var db= new ApplicationDbContext())
             {
-                string keyword = Request.Form["Search"];
+                string search = Request.Form["searchString"];
                 int id = Convert.ToInt32(Request.Form["id"]);
                 var TenLoaiSanPham = db.PhanLoaiSanPhams.Where(x => x.PhanLoaiSanPhamID == id).Select(x => x.TenPhanLoaiSanPham).FirstOrDefault();
                 int totalRecord = 0;
-                var dsSanPhamTheoLoai = new SanPhamDAO().Search(id, keyword, ref totalRecord, page, pageSize);
+                var dsSanPhamTheoLoai = new SanPhamDAO().Search(id, search, ref totalRecord, page, pageSize);
 
                 ViewBag.Total = totalRecord;
                 ViewBag.Page = page;

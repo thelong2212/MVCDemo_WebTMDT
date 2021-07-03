@@ -37,8 +37,8 @@ namespace WebSiteBanHangMVC.DAO
         }
         public List<SanPham> Search(int? danhMucID, string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 4)
         {
-            totalRecord = db.SanPhams.Where(x => x.TenSanPham.Contains(keyword) && x.LoaiSanPhamID == danhMucID).Count();
-            var model = db.SanPhams.Where(x => x.LoaiSanPhamID == danhMucID && x.TenSanPham.Contains(keyword)).OrderByDescending(x => x.SanPhamID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            totalRecord = db.SanPhams.Where(x => x.TenSanPham.ToLower().Contains(keyword.ToLower()) && x.LoaiSanPhamID == danhMucID).Count();
+            var model = db.SanPhams.Where(x => x.LoaiSanPhamID == danhMucID && x.TenSanPham.ToLower().Contains(keyword.ToLower())).OrderByDescending(x => x.SanPhamID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             return model.ToList();
         }
 
