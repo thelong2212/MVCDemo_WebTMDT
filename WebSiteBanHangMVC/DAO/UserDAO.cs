@@ -138,7 +138,7 @@ namespace WebSiteBanHangMVC.DAO
             {
                 if (isLoginAdmin == true)
                 {
-                    if (result.GroupID == CommonConstants.ADMIN_GROUP || result.GroupID == CommonConstants.MOD_GROUP)
+                    if (result.GroupID == CommonGroup.ADMIN_GROUP || result.GroupID == CommonGroup.MOD_GROUP)
                     {
                         if (result.Status == false)
                             return -1;
@@ -180,7 +180,7 @@ namespace WebSiteBanHangMVC.DAO
             {
                 if (isLoginAdmin == true)
                 {
-                    if (result.GroupID == CommonConstants.ADMIN_GROUP || result.GroupID == CommonConstants.MEMBER_GROUP)
+                    if (result.GroupID == CommonGroup.ADMIN_GROUP || result.GroupID == CommonGroup.MEMBER_GROUP)
                     {
                         if (result.Status == false)
                             return -1;

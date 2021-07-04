@@ -98,7 +98,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     @{
-                        if (Session[WebSiteBanHangMVC.Common.CommonConstant.USER_SESSION] != null)
+                        if (Session[WebSiteBanHangMVC.Common.CommonSession.USER_SESSION] != null)
                                 {
                                         <li class="dropdown" style="margin-top:7px;">
                                             <a style="color: #f3f90f;" class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -106,14 +106,11 @@
                                             </a>
                                             <ul class="dropdown-menu dropdown-user">
                                                 <li>
-                                                    <a href="/Admin/Login/Index">Quản lý hệ thống</a>
+                                                    <a href="#">Tài khoản của tôi</a>
                                                 </li>
                                                 <li class="divider"></li>
                                                 <li>
                                                     <a href="/Users/DangXuat"> Đăng xuất</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/Users/DangKy"> Đăng ký</a>
                                                 </li>
                                             </ul>
                                             <!-- /.dropdown-user -->

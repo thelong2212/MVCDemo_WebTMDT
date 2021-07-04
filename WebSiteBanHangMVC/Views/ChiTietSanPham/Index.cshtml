@@ -37,7 +37,16 @@
                 <p style="color:red">Giá sản phẩm: @sanPham.GiaSanPham</p>
             </div>
             <div class="mb-3">
-                <a class="btn btn-dark" style="width: 100%" href="/them-sp-gio-hang/@sanPham.SanPhamID">Thêm vào giỏ hàng</a>
+                @{
+                    if (Session[WebSiteBanHangMVC.Common.CommonSession.USER_SESSION] == null)
+                    {
+                        <a class="btn btn-dark" style="width: 100%" href="/Users/DangNhap">Thêm vào giỏ hàng</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-dark" style="width: 100%" href="/them-sp-gio-hang/@sanPham.SanPhamID">Thêm vào giỏ hàng</a>
+                    }
+                }
             </div>
             <div>
                 <p>

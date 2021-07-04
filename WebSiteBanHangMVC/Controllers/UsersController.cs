@@ -23,7 +23,7 @@ namespace WebSiteBanHangMVC.Controllers
         }
         public ActionResult DangXuat()
         {
-            Session[CommonConstant.USER_SESSION] = null;
+            Session[CommonSession.USER_SESSION] = null;
             return Redirect("/");
         }
         [HttpPost]
@@ -39,7 +39,7 @@ namespace WebSiteBanHangMVC.Controllers
                     var userSession = new UserLogin();
                     userSession.UserName = user.UserName;
                     userSession.UserID = user.UserID;
-                    Session.Add(CommonConstant.USER_SESSION, userSession);
+                    Session.Add(CommonSession.USER_SESSION, userSession);
                     return Redirect("/");
                 }
                 else if (result == 0)

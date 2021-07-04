@@ -245,8 +245,8 @@
     <Compile Include="Models\UserGroup.cs" />
     <Compile Include="Models\XaPhuong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\CommomConstants.cs" />
-    <Compile Include="Utils\CommonConstant.cs" />
+    <Compile Include="Utils\CommonGroup.cs" />
+    <Compile Include="Utils\CommonSession.cs" />
     <Compile Include="Utils\Encryptor.cs" />
     <Compile Include="Utils\HasCredentialAttribute.cs" />
     <Compile Include="Utils\MailHelper.cs" />
@@ -2291,6 +2291,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

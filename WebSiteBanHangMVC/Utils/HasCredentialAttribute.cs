@@ -14,7 +14,7 @@ namespace WebSiteBanHangMVC
         public string RoleID { set; get; }
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            var session = (UserLogin)HttpContext.Current.Session[Common.CommonConstant.USER_SESSION];
+            var session = (UserLogin)HttpContext.Current.Session[Common.CommonSession.USER_SESSION];
             if (session == null)
             {
                 return false;
@@ -22,7 +22,7 @@ namespace WebSiteBanHangMVC
 
             List<string> privilegeLevels = this.GetCredentialByLoggedInUser(session.UserName); // Call another method to get rights of the user from DB
 
-            if (privilegeLevels.Contains(this.RoleID) || session.GroupID == CommonConstants.ADMIN_GROUP)
+            if (privilegeLevels.Contains(this.RoleID) || session.GroupID == CommonGroup.ADMIN_GROUP)
             {
                 return true;
             }
@@ -40,7 +40,7 @@ namespace WebSiteBanHangMVC
         }
         private List<string> GetCredentialByLoggedInUser(string userName)
         {
-            var credentials = (List<string>)HttpContext.Current.Session[Common.CommonConstant.SESSION_CREDENTIALS];
+            var credentials = (List<string>)HttpContext.Current.Session[Common.CommonSession.SESSION_CREDENTIALS];
             return credentials;
         }
     }

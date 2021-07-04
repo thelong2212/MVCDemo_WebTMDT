@@ -20,7 +20,7 @@ namespace WebSiteBanHangMVC.Areas.Admin.Controllers
 
         public ActionResult Logout(LoginModel model)
         {
-            Session[CommonConstant.USER_SESSION] = null;
+            Session[CommonSession.USER_SESSION] = null;
             return RedirectToAction("Index");
         }
         public ActionResult Login(LoginModel model)
@@ -38,8 +38,8 @@ namespace WebSiteBanHangMVC.Areas.Admin.Controllers
                     userSession.GroupID = user.GroupID;
                     //var listCredentials = dao.GetListCredential(model.UserName);
                     var listCredentials = new object();
-                    Session.Add(CommonConstant.SESSION_CREDENTIALS, listCredentials);
-                    Session.Add(CommonConstant.USER_SESSION, userSession);
+                    Session.Add(CommonSession.SESSION_CREDENTIALS, listCredentials);
+                    Session.Add(CommonSession.USER_SESSION, userSession);
                     return RedirectToAction("Index", "Admin", userSession);
                 }
                 else if (result == 0)
@@ -60,7 +60,7 @@ namespace WebSiteBanHangMVC.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "đăng nhập không đúng.");
+                    ModelState.AddModelError("", "Đăng nhập không đúng.");
                 }
             }
             return View("Index");

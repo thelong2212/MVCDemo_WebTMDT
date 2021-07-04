@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebSiteBanHangMVC.Common
 {
-    public class CommonConstants
+    public class CommonGroup
     {
         public static int MEMBER_GROUP = 3;
         public static int ADMIN_GROUP = 1;
