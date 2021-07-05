@@ -10,9 +10,9 @@ using WebSiteBanHangMVC.Utils;
 
 namespace WebSiteBanHangMVC.Controllers
 {
-    public class UsersController : Controller
+    public class UserController : Controller
     {
-        // GET: Users
+        // GET: User
         public ActionResult DangKy()
         {
             return View();
@@ -39,6 +39,7 @@ namespace WebSiteBanHangMVC.Controllers
                     var userSession = new UserLogin();
                     userSession.UserName = user.UserName;
                     userSession.UserID = user.UserID;
+                    userSession.GroupID = user.GroupID;
                     Session.Add(CommonSession.USER_SESSION, userSession);
                     return Redirect("/");
                 }
@@ -70,11 +71,11 @@ namespace WebSiteBanHangMVC.Controllers
                 var register = new UserDAO();
                 if (register.CheckUserName(model.Name))
                 {
-                    ModelState.AddModelError("", "Tên Đăng Ký Đã Tồn Tại");
+                    ModelState.AddModelError("", "Tên đăng nhập đã tồn tại");
                 }
                 else if (register.CheckEmail(model.Email))
                 {
-                    ModelState.AddModelError("", "Email Đã Tồn Tại");
+                    ModelState.AddModelError("", "Email đã đăng ký");
                 }
                 else
                 {
@@ -91,12 +92,12 @@ namespace WebSiteBanHangMVC.Controllers
                     var result = register.Insert(user);
                     if (result > 0)
                     {
-                        ViewBag.Success = "Đăng Ký Thành Công";
+                        ViewBag.Success = "Đăng ký thành công";
                         model = new RegisterModels();
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Email Đã Tồn Tại");
+                        ModelState.AddModelError("", "Email đã đăng ký");
                     }
                 }
             }

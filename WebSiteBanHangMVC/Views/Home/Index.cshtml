@@ -157,7 +157,7 @@
                         sanPham.AnhSanPham = "~/Images/productImage/a.jpg";
                     }
                     <div class="col-lg-3">
-                        <a href="/chi-tiet-san-pham/@sanPham.SanPhamID" class="product-item">
+                        <a href="/productDetail/@sanPham.SanPhamID" class="product-item">
                             <div class="card" style="width: 100%;">
                                 <img src="@Url.Content(sanPham.AnhSanPham)" class="card-img-top image" alt="" style="height: 350px;object-fit: cover;">
                                 <div class="card-body">
@@ -191,7 +191,7 @@
                         sanPham.AnhSanPham = "~/Images/productImage/a.jpg";
                     }
                     <div class="col-lg-3">
-                        <a href="/chi-tiet-san-pham/@sanPham.SanPhamID" class="product-item">
+                        <a href="/productDetail/@sanPham.SanPhamID" class="product-item">
                             <div class="card" style="width: 100%;">
                                 <img src="@Url.Content(sanPham.AnhSanPham)" class="card-img-top image" alt="" style="height: 300px;object-fit: cover;">
                                 <div class="card-body">
@@ -206,9 +206,9 @@
         </div>
     </div>
 </div>
-<!-- Load Facebook SDK for JavaScript -->
+ @*Load Facebook SDK for JavaScript 
 <div id="fb-root"></div>
-<!--<script>
+<script>
     window.fbAsyncInit = function () {
         FB.init({
             xfbml: true,
@@ -223,11 +223,10 @@
         js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-</script>-->
-
-<!-- Your Chat Plugin code -->
-<!--<div class="fb-customerchat"
+</script>
+ Your Chat Plugin code 
+<div class="fb-customerchat"
      attribution=setup_tool
      page_id="1458395020908479"
      theme_color="#13cf13">
-</div>-->
+</div>*@

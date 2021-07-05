@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebSiteBanHangMVC.Common;
 using WebSiteBanHangMVC.DAO;
 using WebSiteBanHangMVC.Models;
 using WebSiteBanHangMVC.Utils;
@@ -17,11 +18,19 @@ namespace WebSiteBanHangMVC.Controllers
         // hien thi danh sach san pham dang co trong don hang
         public ActionResult Index()
         {
-            var sessionGioHang = Session["GioHang"];
+            var sessionGioHang = Session[Common.CommonSession.CART_SESSION] as GioHang;
             if (sessionGioHang == null)
             {
                 sessionGioHang = new GioHang();
             }
+            var sessionUserLogin = Session[CommonSession.USER_SESSION] as UserLogin;
+            if (sessionUserLogin == null)
+            {
+                sessionUserLogin = new UserLogin();
+            }
+            var item = UserDAO.Instance.GetByID(sessionUserLogin.UserName);
+            ViewData["UserLogin"] = item;
+
             return View(sessionGioHang);
         }
 
@@ -39,7 +48,7 @@ namespace WebSiteBanHangMVC.Controllers
                 var kh = new KhachHang();
                 var donHang = new DonHang();
                 var spDonHang = new SanPhamDonHang();
-                var sessionGioHang = Session["GioHang"] as GioHang;
+                var sessionGioHang = Session[Common.CommonSession.CART_SESSION] as GioHang;
                 // insert mot don hang roi: => DonHangId => thi dong thoi minh cung phai insert vao bang san pham don hang
                 kh.HoTen = Request.Form["hoTen"];
                 kh.SoDienThoai = Convert.ToInt32(Request.Form["soDienThoai"]);
@@ -53,7 +62,7 @@ namespace WebSiteBanHangMVC.Controllers
                     donHang.KhachHangID = khacHangID;
                     donHang.NgayNhan = Convert.ToDateTime(Request.Form["ngayNhan"]);
                     donHang.DiaChiNhanHangChiTiet = Request.Form["diaChiNhanHang"];
-                    donHang.GhiChu = Request.Form["ghiChu"];
+                    donHang.GhiChu = Request.Form["ghiChu"].ToString();
                     donHang.GiaTriDonHang = sessionGioHang.TongTien;
                     var donHangId = DonHangDAO.Instance.insertDonHang(donHang);
                     if (donHangId != 0)
@@ -76,8 +85,8 @@ namespace WebSiteBanHangMVC.Controllers
                     content = content.Replace("{{TongTien}}", donHang.GiaTriDonHang.ToString());
                     var toEmailAddr = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
               
-                   new MailHelper().SendMail(kh.Email, "Don hang moi tu website ban hang ", content);
-                    new MailHelper().SendMail(toEmailAddr, "Don hang moi tu website ban hang cua ban", content);
+                   new MailHelper().SendMail(kh.Email, $"Bạn đã đặt thành công đơn hàng mã số {donHangId} ", content);
+                    new MailHelper().SendMail(toEmailAddr, $"Đơn hàng mới {donHangId} từ khách hàng Id = {kh.KhachHangID}: {kh.HoTen}", content);
                 }
 
                 // Send 

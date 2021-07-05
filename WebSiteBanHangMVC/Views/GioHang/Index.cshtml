@@ -23,7 +23,7 @@
                     {
                         foreach (var item in Model.Gio)
                         {
-                            <div class="row">
+                            <div class="row" style="margin-bottom: 20px">
                                 <div class="col-2">
                                     @{
                                         var AnhSanPham = item.SanPham.AnhSanPham;
@@ -31,7 +31,7 @@
                                     }
                                 </div>
                                 <div class="col-5">
-                                    <a style="font-size: 18px" href="/chi-tiet-san-pham/@item.SanPham.SanPhamID"><span>Tên sản phẩm: @item.SanPham.TenSanPham</span></a>
+                                    <a style="font-size: 18px" href="/productDetail/@item.SanPham.SanPhamID"><span>Tên sản phẩm: @item.SanPham.TenSanPham</span></a>
                                     <p>Giá sản phẩm : @item.SanPham.GiaSanPham.Value VNĐ</p>
                                 </div>
                                 <div class="col-5">
@@ -47,7 +47,7 @@
                                             }
                                         </div>
                                         <div class="col-3">
-                                            <a class="btn btn-light" href="/GioHang/RemoveAllItem/@item.SanPham.SanPhamID">Xóa</a>
+                                            <a class="btn btn-light" href="/removeAll/@item.SanPham.SanPhamID">Xóa</a>
                                         </div>
                                     </div>
                                 </div>
@@ -60,19 +60,19 @@
         <div class="col-3">
             <div class="card mb-3">
                 <div class="card-body">
-                    <p style="margin:0">Thành tiền: @Model.TongTien VNĐ</p>
+                    <h5 style="margin:0">Thành tiền: @Model.TongTien VNĐ</h5>
                 </div>
             </div>
             @if (Model.Gio.Count > 0)
             {
-                <a class="btn btn-dark" href="/Payment/Index" style="width: 100%">Đặt hàng</a>
+                <a class="btn btn-dark" href="/payment" style="width: 100%">Đặt hàng</a>
             }
         </div>
     </div>
     <script>
         function capNhatSoLuong(SanPhamID) {
             var soLuong = document.getElementById(SanPhamID).value;
-            window.location.href = '/GioHang/RemoveProDuct/' + SanPhamID + '?soLuong=' + soLuong;
+            window.location.href = '/remove/' + SanPhamID + '?soLuong=' + soLuong;
         }
     </script>
 </div>

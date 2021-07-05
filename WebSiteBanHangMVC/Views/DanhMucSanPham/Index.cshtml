@@ -27,7 +27,7 @@
                         sanPham.AnhSanPham = "~/Images/productImage/a.jpg";
                     }
                     <div class="col-md-3">
-                        <a href="/chi-tiet-san-pham/@sanPham.SanPhamID" class="product-item">
+                        <a href="/productDetail/@sanPham.SanPhamID" class="product-item">
                             <div class="card" style="width: 100%">
                                 <img src="@Url.Content(sanPham.AnhSanPham)" class="card-img-top" alt="" style=" width: 100%; height: 250px;object-fit: cover;" />
                                 <div class="card-body">
@@ -81,7 +81,7 @@
                         sanPham.AnhSanPham = "~/Images/productImage/a.jpg";
                     }
                     <div class="col-md-3">
-                        <a href="/chi-tiet-san-pham/@sanPham.SanPhamID" class="product-item">
+                        <a href="/productDetail/@sanPham.SanPhamID" class="product-item">
                             <div class="card" style="width: 100%;">
                                 <img src="@Url.Content(sanPham.AnhSanPham)" class="card-img-top" alt="" style="height: 250px;object-fit: cover;" />
                                 <div class="card-body">
@@ -104,7 +104,7 @@
             var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
             var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
 
-            var link = "/danh-muc-san-pham/" + @ViewBag.danhMucSanPhamID;
+            var link = "/productCategory/" + @ViewBag.danhMucSanPhamID;
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     @if (currentPage > ViewBag.First)

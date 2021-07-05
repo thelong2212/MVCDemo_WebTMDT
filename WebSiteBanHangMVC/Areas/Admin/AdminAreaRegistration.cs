@@ -15,9 +15,14 @@ namespace WebSiteBanHangMVC.Areas.Admin
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
+                name: "Admin",
+                url: "admin/login",
+                new { action = "Index", controller = "Login" }
+                );
+            context.MapRoute(
                 "Admin_default",
-                "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "admin/{controller}/{action}/{id}",
+                defaults: new { action = "Index", id = UrlParameter.Optional }
             );
         }
     }

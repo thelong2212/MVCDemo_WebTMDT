@@ -12,40 +12,80 @@ namespace WebSiteBanHangMVC
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            //Route thanh toan
             routes.MapRoute(
-               name: "AddItem",
-               url: "them-sp-gio-hang/{id}",
-               defaults: new { controller = "GioHang", action = "AddItem" }
-            );
-            routes.MapRoute(
-               name: "AddItems",
-               url: "them-nhieu-sp-gio-hang/{ids}",
-               defaults: new { controller = "GioHang", action = "AddItems" }
+               name: "Payment",
+               url: "payment",
+               new { controller = "Payment", action = "Index" }
            );
             routes.MapRoute(
-               name: "Index",
-               url: "danh-muc-san-pham/{ID}",
-               defaults: new { controller = "DanhMucSanPham", action = "Index" }
+               name: "ComfirmPayment",
+               url: "confirmPayment",
+               new { controller = "Payment", action = "XacNhanThanhToan" }
+           );
+
+            //Route gio hang
+            routes.MapRoute(
+               name: "RemoveItem",
+               url: "remove/{id}",
+               new { controller = "GioHang", action = "RemoveProduct" }
+           );
+            routes.MapRoute(
+               name: "RemoveAllItem",
+               url: "removeAll/{id}",
+               new { controller = "GioHang", action = "RemoveAllItem" }
+           );
+            routes.MapRoute(
+               name: "YourCart",
+               url: "yourCart",
+               new { controller = "GioHang", action = "Index" }
+           );
+            routes.MapRoute(
+               name: "AddItem",
+               url: "add/{id}",
+               new { controller = "GioHang", action = "AddItem" }
+            );
+           // routes.MapRoute(
+           //    name: "AddItems",
+           //    url: "adds/{ids}",
+           //    defaults: new { controller = "GioHang", action = "AddItems" }
+           //);
+
+            //Route danh muc san pham
+            routes.MapRoute(
+               name: "ProductCategory",
+               url: "productCategory/{id}",
+               new { controller = "DanhMucSanPham", action = "Index" }
            );
             routes.MapRoute(
                name: "Search",
-               url: "tim-kiem-san-pham",
-               defaults: new { controller = "DanhMucSanPham", action = "Search" }
+               url: "search",
+               new { controller = "DanhMucSanPham", action = "Search" }
            );
+
+            //Route chi tiet san pham
             routes.MapRoute(
-                name: "ChiTietSanPham",
-                url: "chi-tiet-san-pham/{id}",
-                defaults: new { controller = "ChiTietSanPham", action = "Index" }
+                name: "ProductDetail",
+                url: "productDetail/{id}",
+                new { controller = "ChiTietSanPham", action = "Index" }
+             );
+
+            //Route login, signup, logout
+            //routes.MapRoute(
+            //   name: "LoginAdmin",
+            //   url: "loginVad",
+            //   defaults: new { controller = "/Areas/Admin/Controllers/Login", action = "Index" }
+            //);
+            routes.MapRoute(
+                name: "SignUp",
+                url: "signup",
+                new { controller = "User", action = "DangKy" }
              );
             routes.MapRoute(
-                name: "DangKy",
-                url: "dang-ky-thanh-vien",
-                defaults: new { controller = "Users", action = "DangKy" }
-             );
-            routes.MapRoute(
-               name: "DangNhap",
-               url: "dang-nhap",
-               defaults: new { controller = "Users", action = "DangNhap" }
+               name: "Login",
+               url: "login",
+               new { controller = "User", action = "DangNhap" }
             );
             routes.MapRoute(
                 name: "Default",

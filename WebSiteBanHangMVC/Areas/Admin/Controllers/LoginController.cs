@@ -23,6 +23,7 @@ namespace WebSiteBanHangMVC.Areas.Admin.Controllers
             Session[CommonSession.USER_SESSION] = null;
             return RedirectToAction("Index");
         }
+        [HttpPost]
         public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid)

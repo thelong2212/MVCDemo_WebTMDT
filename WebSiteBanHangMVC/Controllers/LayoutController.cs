@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using WebSiteBanHangMVC.Models;
 
@@ -22,12 +19,12 @@ namespace WebSiteBanHangMVC.Controllers
                                            select plsp;
 
                 var dsPhanLoaiSanPhamNu = from plsp in phanLoaiSanPhams
-                                           join dm in danhMucSanPhams on plsp.DanhMucSanPhamID equals dm.DanhMucSanPhamID
-                                           where dm.LaDoNu == true
-                                           select plsp;
+                                          join dm in danhMucSanPhams on plsp.DanhMucSanPhamID equals dm.DanhMucSanPhamID
+                                          where dm.LaDoNu == true
+                                          select plsp;
                 ViewData["dsPhanLoaiSanPhamNam"] = dsPhanLoaiSanPhamNam.ToList();
                 ViewData["dsPhanLoaiSanPhamNu"] = dsPhanLoaiSanPhamNu.ToList();
-                GioHang sessionGioHang = Session["GioHang"] as GioHang;
+                GioHang sessionGioHang = Session[Common.CommonSession.CART_SESSION] as GioHang;
                 //soLuong
                 if (sessionGioHang == null)
                     ViewBag.SoLuong = 0;
@@ -39,7 +36,7 @@ namespace WebSiteBanHangMVC.Controllers
 
         public ActionResult Footer()
         {
-            GioHang sessionGioHang = Session["GioHang"] as GioHang;
+            GioHang sessionGioHang = Session[Common.CommonSession.CART_SESSION] as GioHang;
             return View();
         }
     }

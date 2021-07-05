@@ -13,7 +13,7 @@ namespace WebSiteBanHangMVC.Controllers
         // GET: GioHang
         public ActionResult Index()
         {
-            var sessionGioHang = Session["GioHang"];
+            var sessionGioHang = Session[Common.CommonSession.CART_SESSION];
             if (sessionGioHang == null)
                 sessionGioHang = new GioHang();
             return View(sessionGioHang);
@@ -22,33 +22,33 @@ namespace WebSiteBanHangMVC.Controllers
         {
             using (var db = new ApplicationDbContext())
             {
-                GioHang sessionGioHang = Session["GioHang"] as GioHang;
+                GioHang sessionGioHang = Session[Common.CommonSession.CART_SESSION] as GioHang;
                 if (sessionGioHang == null)
                     sessionGioHang = new GioHang();
                 SanPham sanPham = db.SanPhams.Where(x => x.SanPhamID == id).FirstOrDefault();
                 sessionGioHang.Add(sanPham);
-                Session["GioHang"] = sessionGioHang;
+                Session[Common.CommonSession.CART_SESSION] = sessionGioHang;
                 var t = Request.UrlReferrer.AbsolutePath;
                 return RedirectToAction("Index", "ChiTietSanPham", new { id = Request.UrlReferrer.Segments.Last() });
             }
         }
-        public ActionResult RemoveProDuct(int id, int soLuong)
+        public ActionResult RemoveProduct(int id, int soLuong)
         {
-            var sessionGioHang = Session["GioHang"] as GioHang;
+            var sessionGioHang = Session[Common.CommonSession.CART_SESSION] as GioHang;
             sessionGioHang.ChangeAmount(id, soLuong);
-            Session["GioHang"] = sessionGioHang;
+            Session[Common.CommonSession.CART_SESSION] = sessionGioHang;
             return RedirectToAction("Index");
         }
         public ActionResult RemoveAllItem(int id)
         {
-            var sessionGioHang = Session["GioHang"] as GioHang;
+            var sessionGioHang = Session[Common.CommonSession.CART_SESSION] as GioHang;
             sessionGioHang.RemoveAll(id);
-            Session["GioHang"] = sessionGioHang;
+            Session[Common.CommonSession.CART_SESSION] = sessionGioHang;
             return RedirectToAction("Index");
         }
         public ActionResult Total(int id)
         {
-            var sessionGioHang = Session["GioHang"] as GioHang;
+            var sessionGioHang = Session[Common.CommonSession.CART_SESSION] as GioHang;
             return RedirectToAction("Index");
         }
     }

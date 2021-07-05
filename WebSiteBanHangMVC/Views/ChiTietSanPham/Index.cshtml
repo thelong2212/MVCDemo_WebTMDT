@@ -40,11 +40,11 @@
                 @{
                     if (Session[WebSiteBanHangMVC.Common.CommonSession.USER_SESSION] == null)
                     {
-                        <a class="btn btn-dark" style="width: 100%" href="/Users/DangNhap">Thêm vào giỏ hàng</a>
+                        <a class="btn btn-dark" style="width: 100%" href="/login">Thêm vào giỏ hàng</a>
                     }
                     else
                     {
-                        <a class="btn btn-dark" style="width: 100%" href="/them-sp-gio-hang/@sanPham.SanPhamID">Thêm vào giỏ hàng</a>
+                        <a class="btn btn-dark" style="width: 100%" href="/add/@sanPham.SanPhamID">Thêm vào giỏ hàng</a>
                     }
                 }
             </div>
@@ -87,7 +87,7 @@
                     sanPhamLienQuan.AnhSanPham = "~/Images/productImage/a.jpg";
                 }
                 <div class="col-lg-3">
-                    <a href="/chi-tiet-san-pham/@sanPhamLienQuan.SanPhamID" class="product-item">
+                    <a href="/productDetail/@sanPhamLienQuan.SanPhamID" class="product-item">
                         <div class="card" style="width: 100%;">
                             <img src="@Url.Content(sanPhamLienQuan.AnhSanPham)" class="card-img-top" alt="" style="height: 300px;object-fit: cover;">
                             <div class="card-body">

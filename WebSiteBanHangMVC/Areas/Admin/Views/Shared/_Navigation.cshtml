@@ -15,7 +15,7 @@
     </div>
     <!-- /.navbar-header -->
     <ul class="nav navbar-top-links navbar-right">
-        @*<li>
+        <li>
             @using (Html.BeginForm("ChangeCulture", "Base"))
             {
                 @Html.Hidden("returnUrl", Request.RawUrl)
@@ -25,12 +25,12 @@
 
                     }, "value", "text", Session[WebSiteBanHang.Common.CommonConstant.CurrentCulture]), new { onchange = "this.form.submit();" })
             }
-        </li>*@
+        </li>
         <li class="dropdown">
-            @*<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-            </a>*@
-            @*<ul class="dropdown-menu dropdown-messages">
+            </a>
+            <ul class="dropdown-menu dropdown-messages">
                 <li>
                     <a href="#">
                         <div>
@@ -215,7 +215,7 @@
             </ul>
             <!-- /.dropdown-alerts -->
         </li>
-        <!-- /.dropdown -->*@
+        <!-- /.dropdown -->
         <li  class="dropdown">
             <a style="color:#fff" class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -263,9 +263,9 @@
                     </div>
                     <!-- /input-group -->
                 </li>
-                @*<li>
+                <li>
                     <a href="/Admin/Admin/Index"><i class="fa fa-dashboard fa-fw"></i> Trang chủ</a>
-                </li>*@
+                </li>
                 @{
                     if (user.GroupID == 1)
                     {

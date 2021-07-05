@@ -208,7 +208,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAO\DonHangDAO.cs" />
     <Compile Include="DAO\KhachHangDAO.cs" />
     <Compile Include="DAO\SanPhamDAO.cs" />
@@ -2270,8 +2270,8 @@
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Payment\XacNhanThanhToan.cshtml" />
     <Content Include="Views\DanhMucSanPham\Index.cshtml" />
-    <Content Include="Views\Users\DangKy.cshtml" />
-    <Content Include="Views\Users\DangNhap.cshtml" />
+    <Content Include="Views\User\DangKy.cshtml" />
+    <Content Include="Views\User\DangNhap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Home\" />
