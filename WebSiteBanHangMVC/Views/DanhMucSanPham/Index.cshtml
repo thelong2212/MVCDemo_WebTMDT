@@ -40,7 +40,7 @@
             }
         </div>
         <div class="col-md-3" style="margin-top: 84px;">
-            @using (Html.BeginForm("Search", "DanhMucSanPham", FormMethod.Post))
+            @using (Html.BeginRouteForm("Search", FormMethod.Post))
             {
                 <div class="input-group mb-3">
                     <input type="text" value="@ViewBag.keyword" class="form-control" name="searchString" aria-label="Amount (to the nearest dollar)" />
