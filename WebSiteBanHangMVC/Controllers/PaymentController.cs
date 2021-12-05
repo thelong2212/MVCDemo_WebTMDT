@@ -22,6 +22,13 @@ namespace WebSiteBanHangMVC.Controllers
             {
                 sessionGioHang = new GioHang();
             }
+            var sessionUserLogin = Session[Utils.CommonConstant.USER_SESSION] as UserLogin;
+            if (sessionUserLogin == null)
+            {
+                sessionUserLogin = new UserLogin();
+            }
+            var UserLogin = UserDAO.Instance.GetByID(sessionUserLogin.UserName);
+            ViewData["UserLogin"] = UserLogin;
             return View(sessionGioHang);
         }
 

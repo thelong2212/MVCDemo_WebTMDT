@@ -1,6 +1,6 @@
 ﻿@using WebSiteBanHangMVC.Utils;
 @{
-    var user = Session[WebSiteBanHangMVC.Common.CommonConstant.USER_SESSION] as UserLogin;
+    var user = Session[WebSiteBanHangMVC.Utils.CommonConstant.USER_SESSION] as UserLogin;
     var us = user;
 }
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="background-color: #58a0de;margin-bottom: 0;">
@@ -26,11 +26,11 @@
                     }, "value", "text", Session[WebSiteBanHang.Common.CommonConstant.CurrentCulture]), new { onchange = "this.form.submit();" })
             }
         </li>*@
-        <li class="dropdown">
-            @*<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <!--<li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-            </a>*@
-            @*<ul class="dropdown-menu dropdown-messages">
+            </a>
+            <ul class="dropdown-menu dropdown-messages">
                 <li>
                     <a href="#">
                         <div>
@@ -73,11 +73,11 @@
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </li>
-            </ul>
+            </ul>-->
             <!-- /.dropdown-messages -->
-        </li>
+        <!--</li>-->
         <!-- /.dropdown -->
-        <li class="dropdown">
+        <!--<li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
@@ -152,11 +152,11 @@
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </li>
-            </ul>
+            </ul>-->
             <!-- /.dropdown-tasks -->
-        </li>
+        <!--</li>-->
         <!-- /.dropdown -->
-        <li class="dropdown">
+        <!--<li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
@@ -212,10 +212,10 @@
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </li>
-            </ul>
+            </ul>-->
             <!-- /.dropdown-alerts -->
-        </li>
-        <!-- /.dropdown -->*@
+        <!--</li>-->
+        <!-- /.dropdown -->
         <li  class="dropdown">
             <a style="color:#fff" class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -263,9 +263,9 @@
                     </div>
                     <!-- /input-group -->
                 </li>
-                @*<li>
+                <li>
                     <a href="/Admin/Admin/Index"><i class="fa fa-dashboard fa-fw"></i> Trang chủ</a>
-                </li>*@
+                </li>
                 @{
                     if (user.GroupID == 1)
                     {

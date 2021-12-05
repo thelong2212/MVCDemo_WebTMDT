@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using WebSiteBanHangMVC.Common;
 using WebSiteBanHangMVC.Utils;
 
 namespace WebSiteBanHangMVC
@@ -14,7 +13,7 @@ namespace WebSiteBanHangMVC
         public string RoleID { set; get; }
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            var session = (UserLogin)HttpContext.Current.Session[Common.CommonConstant.USER_SESSION];
+            var session = (UserLogin)HttpContext.Current.Session[Utils.CommonConstant.USER_SESSION];
             if (session == null)
             {
                 return false;
@@ -40,7 +39,7 @@ namespace WebSiteBanHangMVC
         }
         private List<string> GetCredentialByLoggedInUser(string userName)
         {
-            var credentials = (List<string>)HttpContext.Current.Session[Common.CommonConstant.SESSION_CREDENTIALS];
+            var credentials = (List<string>)HttpContext.Current.Session[Utils.CommonConstant.SESSION_CREDENTIALS];
             return credentials;
         }
     }

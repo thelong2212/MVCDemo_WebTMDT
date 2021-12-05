@@ -1,7 +1,9 @@
 ﻿@using WebSiteBanHangMVC.Models;
+@using WebSiteBanHangMVC.Utils;
 @{
     var dsPhanLoaiSanPhamNam = ViewData["dsPhanLoaiSanPhamNam"] as List<PhanLoaiSanPham> ?? new List<PhanLoaiSanPham>();
     var dsPhanLoaiSanPhamNu = ViewData["dsPhanLoaiSanPhamNu"] as List<PhanLoaiSanPham> ?? new List<PhanLoaiSanPham>();
+    var UserLogin = ViewData["UserLogin"] as User;
     Layout = null;
 }
 
@@ -93,26 +95,25 @@
                     </li>
                 </ul>
             </div>
-            <div class="logo_top"><a href="/"><img src="~/Images/logo.png" width="125" height="75" alt="Logo web30s" style="margin-right: 143px;"></a></div>
+            <div class="logo_top">
+                <a href="/">
+                    <img src="~/Images/logoShopping.png" style="max-width: 60px; border-radius: 100px; border: 2px solid #f1f1f1; object-fit: fill" />
+                </a>
+            </div>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     @{
-                        if (1 != null)
+                        if (Session[WebSiteBanHangMVC.Utils.CommonConstant.USER_SESSION] != null)
                         {
                             <li class="dropdown" style="margin-top:7px;">
                                 <a style="color: #f3f90f;" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-user fa-fw"></i>
+                                    <i class="fa fa-user fa-fw"></i>@UserLogin.UserName
                                 </a>
                                 <ul class="dropdown-menu dropdown-user">
-                                    <li>
-                                        <a href="/Admin/Login/Index">Quản lý hệ thống</a>
-                                    </li>
+
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="/Users/Logout"> Đăng xuất</a>
-                                    </li>
-                                    <li>
-                                        <a href="/Users/Register"> Đăng ký</a>
+                                        <a href="/User/LogoutUser"> Đăng xuất</a>
                                     </li>
                                 </ul>
                                 <!-- /.dropdown-user -->
@@ -126,14 +127,10 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-user">
                                     <li>
-                                        <a href="/Users/Login">Đăng nhập</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="/Admin/Login/Index">Quản lý hệ thống</a>
+                                        <a href="/login"><b>Đăng nhập</b></a>
                                     </li>
                                     <li>
-                                        <a href="/Users/Register"> Đăng ký</a>
+                                        <a href="/register"><b> Đăng ký</b></a>
                                     </li>
                                 </ul>
                                 <!-- /.dropdown-user -->

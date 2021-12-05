@@ -51,14 +51,7 @@ namespace WebSiteBanHangMVC.DAO
                 khachHang.Email = entity.Email;
                 khachHang.GhiChu = entity.GhiChu;
                 khachHang.DiaChi = entity.DiaChi;
-                if (entity.GioiTinh == true || entity.GioiTinh == false)
-                {
-                    khachHang.GioiTinh = entity.GioiTinh;
-                }
-                else
-                {
-                    khachHang.GioiTinh = true;
-                }
+               
                 db.SaveChanges();
                 return true;
             }
@@ -103,5 +96,6 @@ namespace WebSiteBanHangMVC.DAO
             db.SaveChanges();
             return khachHang.GioiTinh;
         }
+
     }
 }

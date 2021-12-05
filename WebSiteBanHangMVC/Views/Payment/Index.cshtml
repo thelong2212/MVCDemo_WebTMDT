@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var UserLogin = ViewData["UserLogin"] as User;
+
 }
 @model GioHang
 
@@ -55,37 +57,68 @@
             @*Hien thi cho nguoi dung 1 form nhap lieu, de nhap thong tin khach hang*@
             <p> Moi ban hoan thanh thong tin thanh toan</p>
             <br />
-            <form action="/Payment/XacNhanThanhToan" method="post" target="_blank">
+            @if (UserLogin != null)
+            {
+            <form action="/xac-nhan-thanh-toan" method="post" target="_blank">
                 <div class="form-group">
-                    <label for="hoTen">Ho Ten: </label>
-                    <input class="form-control" required type="text" name="hoTen" id="hoTen" placeholder="Ho ten" />
+                    <label for="hoTen">Họ tên</label>
+                    <input class="form-control" required type="text" name="hoTen" id="hoTen" placeholder="Họ tên" value="@UserLogin.Name" />
                 </div>
                 <div class="form-group">
-                    <label for="email">Email: </label>
+                    <label for="email">Email</label>
+                    <input class="form-control" required type="email" name="email" id="email" placeholder="Email" value="@UserLogin.Email" />
+                </div>
+                <div class="form-group">
+                    <label for="soDienThoai">Số điện thoại</label>
+                    <input class="form-control" required type="text" name="soDienThoai" id="soDienThoai" placeholder="Số điện thoại" value="@UserLogin.Phone" />
+                </div>
+                <div class="form-group">
+                    <label for="diaChi">Địa chỉ</label>
+                    <input class="form-control" required type="text" name="diaChi" id="diaChi" placeholder="Địa chỉ" value="@UserLogin.DiaChiChiTiet" />
+                </div>
+                <div class="form-group">
+                    <label for="diaChiNhanHang">Địa chỉ nhận hàng</label>
+                    <input class="form-control" required type="text" name="diaChiNhanHang" id="diaChiNhanHang" placeholder="địa chỉ nhận hàng" value="@UserLogin.DiaChiChiTiet" />
+                </div>
+                
+                <div class="form-group">
+                    <label for="ghiChu">Ghi chú</label>
+                    <textarea rows="5" class="form-control" required name="ghiChu" id="ghiChu" placeholder="Ghi chú"></textarea>
+                </div>
+                <input style="width: 100%" class="btn btn-dark" type="submit" name="name" value="Xác nhận thanh toán" />
+            </form>
+            }
+            else
+            {
+            <form action="/xac-nhan-thanh-toan" method="post" target="_blank">
+                <div class="form-group">
+                    <label for="hoTen">Họ tên</label>
+                    <input class="form-control" required type="text" name="hoTen" id="hoTen" placeholder="Họ tên" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
                     <input class="form-control" required type="email" name="email" id="email" placeholder="Email" />
                 </div>
                 <div class="form-group">
-                    <label for="soDienThoai">So dien thoai: </label>
-                    <input class="form-control" required type="text" name="soDienThoai" id="soDienThoai" placeholder="So dien thoai" />
+                    <label for="soDienThoai">Số điện thoại</label>
+                    <input class="form-control" required type="text" name="soDienThoai" id="soDienThoai" placeholder="Số điện thoại" />
                 </div>
                 <div class="form-group">
-                    <label for="diaChi">Dia chi noi o: </label>
-                    <input class="form-control" required type="text" name="diaChi" id="diaChi" placeholder="Dia chi noi o" />
+                    <label for="diaChi">Địa chỉ</label>
+                    <input class="form-control" required type="text" name="diaChi" id="diaChi" placeholder="Địa chỉ" />
                 </div>
                 <div class="form-group">
-                    <label for="diaChiNhanHang">Dia chi nhan hang: </label>
-                    <input class="form-control" required type="text" name="diaChiNhanHang" id="diaChiNhanHang" placeholder="Dia chi nhan hang" />
+                    <label for="diaChiNhanHang">Địa chỉ nhận hàng</label>
+                    <input class="form-control" required type="text" name="diaChiNhanHang" id="diaChiNhanHang" placeholder="địa chỉ nhận hàng" />
                 </div>
+                
                 <div class="form-group">
-                    <label for="ngayNhan">Ngay Nhan</label>
-                    <input class="form-control" required type="date" name="ngayNhan" id="ngayNhan" placeholder="Ngay Nhap" />
+                    <label for="ghiChu">Ghi chú</label>
+                    <textarea rows="5" class="form-control" required name="ghiChu" id="ghiChu" placeholder="Ghi chú"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="ghiChu">Ghi chu</label>
-                    <textarea rows="5" class="form-control" required name="ghiChu" id="ghiChu" placeholder="Ghi chu"></textarea>
-                </div>
-                <input style="width: 100%" class="btn btn-dark" type="submit" name="name" value="Xac nhan thanh toan" />
+                <input style="width: 100%" class="btn btn-dark" type="submit" name="name" value="Xác nhận thanh toán" />
             </form>
+            }
         </div>
     </div>
 </div>

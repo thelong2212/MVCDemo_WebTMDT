@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WebSiteBanHangMVC.Common;
 using WebSiteBanHangMVC.Models;
+using WebSiteBanHangMVC.Utils;
 
 namespace WebSiteBanHangMVC.DAO
 {

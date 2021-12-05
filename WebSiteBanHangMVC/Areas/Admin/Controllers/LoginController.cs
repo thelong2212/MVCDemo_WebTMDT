@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebSiteBanHangMVC.Areas.Admin.Models;
-using WebSiteBanHangMVC.Common;
 using WebSiteBanHangMVC.DAO;
 using WebSiteBanHangMVC.Models;
 using WebSiteBanHangMVC.Utils;
+using LoginModel = WebSiteBanHangMVC.Areas.Admin.Models.LoginModel;
 
 namespace WebSiteBanHangMVC.Areas.Admin.Controllers
 {

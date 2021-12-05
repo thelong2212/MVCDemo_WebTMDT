@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebSiteBanHangMVC.DAO;
 using WebSiteBanHangMVC.Models;
-
+using WebSiteBanHangMVC.Utils;
 namespace WebSiteBanHangMVC.Controllers
 {
     public class LayoutController : Controller
@@ -33,6 +34,14 @@ namespace WebSiteBanHangMVC.Controllers
                     ViewBag.SoLuong = 0;
                 else
                     ViewBag.SoLuong = sessionGioHang.TongSoLuong;
+
+                var sessionUserLogin = Session[Utils.CommonConstant.USER_SESSION] as UserLogin;
+                if (sessionUserLogin == null)
+                {
+                    sessionUserLogin = new UserLogin();
+                }
+                var UserLogin = UserDAO.Instance.GetByID(sessionUserLogin.UserName);
+                ViewData["UserLogin"] = UserLogin;
             }
             return View();
         }

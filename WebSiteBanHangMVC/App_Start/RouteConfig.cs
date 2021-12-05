@@ -32,11 +32,24 @@ namespace WebSiteBanHangMVC
                url: "tim-kiem-san-pham",
                defaults: new { controller = "DanhMucSanPham", action = "Search" }
            );
+
             routes.MapRoute(
                 name: "ChiTietSanPham",
                 url: "chi-tiet-san-pham/{id}",
                 defaults: new { controller = "ChiTietSanPham", action = "Index" }
              );
+
+            routes.MapRoute(
+               name: "RegisterUser",
+               url: "register",
+               new { controller = "User", action = "RegisterUser" }
+              );
+
+            routes.MapRoute(
+               name: "LoginUser",
+               url: "login",
+               new { controller = "User", action = "LoginUser" }
+            );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

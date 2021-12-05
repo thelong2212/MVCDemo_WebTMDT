@@ -31,7 +31,7 @@ namespace WebSiteBanHangMVC.Utils
             client.Host = smtpHost;
             client.EnableSsl = enableSSl;
             client.Port = Convert.ToInt32(smtpPort);
-            client.Send(message);
+                client.Send(message);
         }
     }
 }
