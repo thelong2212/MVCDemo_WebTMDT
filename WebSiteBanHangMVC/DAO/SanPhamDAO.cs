@@ -59,6 +59,13 @@ namespace WebSiteBanHangMVC.DAO
             var model = db.SanPhams.Where(x => x.TenSanPham.Contains(keyword)).OrderByDescending(x => x.SanPhamID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             return model.ToList();
         }
+
+        public List<SanPham> Searchpr(int? danhMucSanPhamID, string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 4)
+        {
+            totalRecord = db.SanPhams.Where(x => x.TenSanPham.Contains(keyword) && x.LoaiSanPhamID == danhMucSanPhamID).Count();
+            var model = db.SanPhams.Where(x => x.LoaiSanPhamID == danhMucSanPhamID && x.TenSanPham.Contains(keyword)).OrderByDescending(x => x.SanPhamID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            return model.ToList();
+        }
         public IEnumerable<SanPham> ListAllpagingad(string searchString, int phanLoaiSanPhamID, int page, int pageSize)
         {
             IQueryable<SanPham> model = db.SanPhams;

@@ -10,6 +10,8 @@ namespace WebSiteBanHangMVC.Controllers
 {
     public class DanhMucSanPhamController : Controller
     {
+        private ApplicationDbContext db;
+
         // GET: DanhMucSanPham
         public ActionResult Index(int? id, int page=1, int pageSize= 4)
         {
@@ -51,12 +53,15 @@ namespace WebSiteBanHangMVC.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Search(string keyword, int page = 1, int pageSize = 4)
+        public ActionResult Search(int page = 1, int pageSize = 4)
         {
-            using (var db = new ApplicationDbContext())
+            using (db = new ApplicationDbContext())
             {
-                int totalRecord = 0;
-                var model = new SanPhamDAO().Search(keyword, ref totalRecord, page, pageSize);
+                string keyword = Request.Form["searchString"];
+                int id = Convert.ToInt32(Request.Form["id"]);
+                var tenDanhMuc = db.PhanLoaiSanPhams.Where(x => x.PhanLoaiSanPhamID == id).Select(x => x.TenPhanLoaiSanPham).FirstOrDefault();
+                int totalRecord = 0;    
+                var dsSanPham = new SanPhamDAO().Searchpr(id, keyword, ref totalRecord, page, pageSize);
 
                 ViewBag.Total = totalRecord;
                 ViewBag.Page = page;
@@ -71,9 +76,9 @@ namespace WebSiteBanHangMVC.Controllers
                 ViewBag.Last = totalPage;
                 ViewBag.Next = page + 1;
                 ViewBag.Prev = page - 1;
-                //ViewData["dsSanPham"] = dsSanPham;
-                //ViewBag.tenDanhMuc = tenDanhMuc;
-                //ViewBag.danhMucSanPhamID = id;
+                ViewData["dsSanPham"] = dsSanPham;
+                ViewBag.tenDanhMuc = tenDanhMuc;
+                ViewBag.danhMucSanPhamID = id;
                 return View("Index");
             }
         }
