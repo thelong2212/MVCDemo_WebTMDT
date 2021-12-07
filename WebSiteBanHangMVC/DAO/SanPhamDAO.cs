@@ -26,10 +26,9 @@ namespace WebSiteBanHangMVC.DAO
                 return instance;
             }
         }
-        public SanPhamDAO()
-        {
-             db = new ApplicationDbContext();
-        }
+
+        public SanPhamDAO() { db = new ApplicationDbContext(); }
+
         public long Create(SanPham entity)
         {
             entity.Status = true;
@@ -48,11 +47,30 @@ namespace WebSiteBanHangMVC.DAO
             var model = db.SanPhams.Where(x => x.LoaiSanPhamID == danhMucID).OrderByDescending(x => x.SanPhamID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             return model.ToList();
         }
-        public List<SanPham> Search(int? danhMucID, string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 4)
+        public List<SanPham> ListByCategoryId(int? danhMucSanPhamID, ref int totalRecord, int pageIndex = 1, int pageSize = 4)
         {
-            totalRecord = db.SanPhams.Where(x => x.TenSanPham.Contains(keyword) && x.LoaiSanPhamID == danhMucID).Count();
-            var model = db.SanPhams.Where(x => x.LoaiSanPhamID == danhMucID && x.TenSanPham.Contains(keyword)).OrderByDescending(x => x.SanPhamID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            totalRecord = db.SanPhams.Where(x => x.LoaiSanPhamID == danhMucSanPhamID).Count();
+            var model = db.SanPhams.Where(x => x.LoaiSanPhamID == danhMucSanPhamID).OrderByDescending(x => x.SanPhamID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             return model.ToList();
+        }
+        public List<SanPham> Search(string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 8)
+        {
+            totalRecord = db.SanPhams.Where(x => x.TenSanPham.Contains(keyword)).Count();
+            var model = db.SanPhams.Where(x => x.TenSanPham.Contains(keyword)).OrderByDescending(x => x.SanPhamID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            return model.ToList();
+        }
+        public IEnumerable<SanPham> ListAllpagingad(string searchString, int phanLoaiSanPhamID, int page, int pageSize)
+        {
+            IQueryable<SanPham> model = db.SanPhams;
+            if (phanLoaiSanPhamID != 0)
+            {
+                model = model.Where(x => x.LoaiSanPhamID == phanLoaiSanPhamID);
+            }
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.TenSanPham.Contains(searchString) || x.ThongTinSanPham.Contains(searchString) || x.MaSanPham.Contains(searchString) || x.GiaSanPham.ToString().Contains(searchString));
+            }
+            return model.OrderByDescending(x => x.NgayTao).ToPagedList(page, pageSize);
         }
         public IEnumerable<SanPham> ListAllpaging(string searchString, int page, int pageSize)
         {
@@ -80,9 +98,10 @@ namespace WebSiteBanHangMVC.DAO
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return false;
+
+                throw;
             }
         }
 
@@ -105,8 +124,21 @@ namespace WebSiteBanHangMVC.DAO
 
         public SanPham ViewDetail(int sanPhamID)
         {
-            return db.SanPhams.Find(sanPhamID);
+            var detail = db.SanPhams.Find(sanPhamID);
+            return detail;
         }
 
+        public List<PhanLoaiSanPham> getDanhMucSanPham()
+        {
+            var danhMucSanPham = db.PhanLoaiSanPhams.ToList();
+            return danhMucSanPham;
+        }
+        public bool ChangeStatus(long id)
+        {
+            var pr = db.SanPhams.Find(id);
+            pr.Status = !pr.Status;
+            db.SaveChanges();
+            return (bool)pr.Status;
+        }
     }
 }

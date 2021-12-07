@@ -32,12 +32,7 @@ namespace WebSiteBanHangMVC.Controllers
             return View(sessionGioHang);
         }
 
-        // [HttpPost] Them moi,Them hinh...
-        // [HttpPatch] Cap nhat, Them moi ...
-        // [HttpPut] Cap nhat thong tin cho doi tuong
-        // [HttpDelete] Xoa mot ban ghi
-        // [HttpGet] : lay du lieu, danh sach , hoac mot doi tuong nao do de su dung o phai view(binding to view)
-        // SanPham
+       
         [HttpPost]
         public ActionResult XacNhanThanhToan() // model : thong tin cua khachhang
         {
