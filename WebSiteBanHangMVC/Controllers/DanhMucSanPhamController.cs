@@ -10,22 +10,19 @@ namespace WebSiteBanHangMVC.Controllers
 {
     public class DanhMucSanPhamController : Controller
     {
-        private ApplicationDbContext db;
-
         // GET: DanhMucSanPham
-        public ActionResult Index(int? id, int page=1, int pageSize= 4)
+        public ActionResult Index(int? ID, int page = 1, int pageSize = 4)
         {
             using (var db = new ApplicationDbContext())
             {
-                if (id.HasValue)
+                if (ID.HasValue)
                 {
-                    var tenDanhMuc = db.PhanLoaiSanPhams.Where(x => x.PhanLoaiSanPhamID == id).Select(x => x.TenPhanLoaiSanPham).FirstOrDefault();
+                    var TenLoaiSanPham = db.PhanLoaiSanPhams.Where(x => x.PhanLoaiSanPhamID == ID).Select(x => x.TenPhanLoaiSanPham).FirstOrDefault();
                     int totalRecord = 0;
-                    var dsSanPham = new SanPhamDAO().ListByCategoryId(id, ref totalRecord, page, pageSize);
+                    var dsSanPhamTheoLoai = new SanPhamDAO().DanhMucSanPham(ID, ref totalRecord, page, pageSize);
 
                     ViewBag.Total = totalRecord;
                     ViewBag.Page = page;
-
                     int maxPage = 5;
                     int totalPage = 0;
 
@@ -37,35 +34,33 @@ namespace WebSiteBanHangMVC.Controllers
                     ViewBag.Next = page + 1;
                     ViewBag.Prev = page - 1;
 
-                    //var dsSanPham = db.SanPhams.Where(x => x.LoaiSanPhamID == id).OrderByDescending(x => x.SanPhamID).Take(12).ToList();
-                    ViewData["dsSanPham"] = dsSanPham;
-                    ViewBag.tenDanhMuc = tenDanhMuc;
-                    ViewBag.danhMucSanPhamID = id;
+                    ViewData["dsSanPhamTheoLoai"] = dsSanPhamTheoLoai;
+                    ViewBag.TenLoaiSanPham = TenLoaiSanPham;
+                    ViewBag.danhMucSanPhamID = ID;
                 }
                 else
                 {
-                    var dsSanPham = db.SanPhams.OrderByDescending(x => x.SanPhamID).Take(12).ToList();
-                    ViewData["dsSanPham"] = dsSanPham;
-                    ViewBag.tenDanhMuc = "Sản phẩm";
-                    ViewBag.danhMucSanPhamID = id;
+                    var dsSanPhamTheoLoai = db.SanPhams.OrderByDescending(x => x.SanPhamID).Take(12).ToList();
+                    ViewData["dsSanPhamTheoLoai"] = dsSanPhamTheoLoai;
+                    ViewBag.TenLoaiSanPham = "San Pham";
+                    ViewBag.danhMucSanPhamID = ID;
                 }
-                return View();
             }
+            return View();
         }
         [HttpPost]
-        public ActionResult Search(int page = 1, int pageSize = 4)
+        public ActionResult Search( int page = 1, int pageSize = 4)
         {
-            using (db = new ApplicationDbContext())
+            using (var db = new ApplicationDbContext())
             {
-                string keyword = Request.Form["searchString"];
+                string keyword = Request.Form["Search"];
                 int id = Convert.ToInt32(Request.Form["id"]);
-                var tenDanhMuc = db.PhanLoaiSanPhams.Where(x => x.PhanLoaiSanPhamID == id).Select(x => x.TenPhanLoaiSanPham).FirstOrDefault();
-                int totalRecord = 0;    
-                var dsSanPham = new SanPhamDAO().Searchpr(id, keyword, ref totalRecord, page, pageSize);
+                var TenLoaiSanPham = db.PhanLoaiSanPhams.Where(x => x.PhanLoaiSanPhamID == id).Select(x => x.TenPhanLoaiSanPham).FirstOrDefault();
+                int totalRecord = 0;
+                var dsSanPhamTheoLoai = new SanPhamDAO().SearchProduct(id, keyword, ref totalRecord, page, pageSize);
 
                 ViewBag.Total = totalRecord;
                 ViewBag.Page = page;
-                ViewBag.Keyword = keyword;
                 int maxPage = 5;
                 int totalPage = 0;
 
@@ -76,13 +71,16 @@ namespace WebSiteBanHangMVC.Controllers
                 ViewBag.Last = totalPage;
                 ViewBag.Next = page + 1;
                 ViewBag.Prev = page - 1;
-                ViewData["dsSanPham"] = dsSanPham;
-                ViewBag.tenDanhMuc = tenDanhMuc;
+
+                ViewData["dsSanPhamTheoLoai"] = dsSanPhamTheoLoai;
+                ViewBag.TenLoaiSanPham = TenLoaiSanPham;
                 ViewBag.danhMucSanPhamID = id;
-                return View("Index");
+
             }
+            return View("Index");
         }
 
     }
-    
+
+
 }
